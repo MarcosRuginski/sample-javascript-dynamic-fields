@@ -1,15 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    <div>Teste 1</div>
-    
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+  </head>
+  <body>
+    <div class="limit">
+      <h1>Exercício 1)</h1>
+      <p>Crie uma página com script em JavaScript que calcula a média de 5 números
+      inseridos pelo usuário e diga se a média é igual, menor ou maior que 7.</p>
+
+      <button id="btn-add" type="button" onclick="adicionar()">+</button>
+      <button id="btn-remove" type="button" onclick="remove()">-</button>
+
+      <div id="container"></div>
+
+      <div id="media-value"></div>
+
+      <button id="btn-media" type="button" onclick="verificaMedia()">Calcular média</button>
+
+      <footer>By Marcos Roberto Ruginski</footer>
+    </div>
+
+    <script>
+      var objTo = document.getElementById("container");
+
+      let fields = [];
+      
+
+      function verificaMedia() {
+        console.log("fields.length", fields.length);
+
+        if(fields.length == 0) {
+          alert("Adicione campos clicando no botão +");
+          return;
+        }
+
+        var soma = 0;
+        fields.forEach((element) => {
+          var valorElemento = document.getElementById("N" + element).value;
+          soma += parseInt(valorElemento, 10);
+          console.log("element", "N" + element, valorElemento);
+        });
+
+        var media = soma / fields.length;
+        if (media && media >= 7) {
+          alert("🥳 Parabéns sua média foi de: " + media);
+        } else if(media) {
+          alert("🙁 Ops... sua média foi de: " + media);
+        } else {
+          alert("🤕 Não consegui realizar o cálculo, por favor preencha os campos com valores.");
+        }
+        console.log("verificaMedia");
+      }
+
+      function remove() {
+        var elemento = document.getElementById("field" + fields.length);
+        elemento.remove();
+        fields.pop();
+      }
+
+      function adicionar() {
+        console.log("fields.length", fields.length);
+
+        if (fields.length <= 4) {
+          fields.push(fields.length + 1);
+          var content =
+            '<div id="field' +
+            fields.length +
+            '">' +
+            '<label for="N' +
+            fields.length +
+            '">Número ' +
+            fields.length +
+            "</label>" +
+            '<input name="N' +
+            fields.length +
+            '" id="N' +
+            fields.length +
+            '" type="text" /><br />' +
+            "</div>";
+
+          var divtest = document.createElement("div");
+          divtest.innerHTML = content;
+          objTo.appendChild(divtest);
+        }
+
+        console.log("fields", fields);
+      }
+    </script>
+  </body>
 </html>
