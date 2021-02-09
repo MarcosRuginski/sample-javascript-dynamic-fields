@@ -15,11 +15,7 @@
 
       <button id="btn-add" type="button" onclick="adicionar()">+</button>
       <button id="btn-remove" type="button" onclick="remove()">-</button>
-
       <div id="container"></div>
-
-      <div id="media-value"></div>
-
       <button id="btn-media" type="button" onclick="verificaMedia()">Calcular média</button>
 
       <footer>By Marcos Roberto Ruginski</footer>
@@ -27,12 +23,9 @@
 
     <script>
       var objTo = document.getElementById("container");
-
       let fields = [];
       
-
       function verificaMedia() {
-        console.log("fields.length", fields.length);
 
         if(fields.length == 0) {
           alert("Adicione campos clicando no botão +");
@@ -43,7 +36,6 @@
         fields.forEach((element) => {
           var valorElemento = document.getElementById("N" + element).value;
           soma += parseInt(valorElemento, 10);
-          console.log("element", "N" + element, valorElemento);
         });
 
         var media = soma / fields.length;
@@ -54,7 +46,6 @@
         } else {
           alert("🤕 Não consegui realizar o cálculo, por favor preencha os campos com valores.");
         }
-        console.log("verificaMedia");
       }
 
       function remove() {
@@ -64,8 +55,6 @@
       }
 
       function adicionar() {
-        console.log("fields.length", fields.length);
-
         if (fields.length <= 4) {
           fields.push(fields.length + 1);
           var content =
